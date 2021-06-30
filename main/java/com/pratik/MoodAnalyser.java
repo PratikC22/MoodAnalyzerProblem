@@ -1,6 +1,7 @@
 /***********************************************************************
- *  UC-1-ability to analyse and Respond Happy or Sad Mood message
- *  UC-2-Handle Exception if user provides invalid mood
+ *  UC-1-ability to analyse and Respond Happy or Sad Mood message.
+ *  UC-2-Handle Exception if user provides invalid mood.
+ *  UC-3-Inform user if entered invalid mood.
  *
  * @author Pratik Chaudhari
  * @since 30/06/2021
@@ -21,15 +22,16 @@ public class MoodAnalyser {
     }
 
     //analyseMood method
-    public String analyseMood() {
+    public String analyseMood() throws MoodAnalyserException {
         try {
-            if (message.contains("sad")) {
+            if (message.length() == 0)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY , "Please enter proper message!");
+            if (message.contains("sad"))
                 return "SAD";
-            } else {
+            else
                 return "HAPPY";
-            }
-        } catch (NullPointerException npe) {
-            return "HAPPY";
+        } catch(NullPointerException e) {
+            throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL , "Please enter proper message!");
         }
     }
 }
