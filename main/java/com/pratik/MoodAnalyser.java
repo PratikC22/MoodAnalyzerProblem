@@ -1,5 +1,6 @@
 /***********************************************************************
  *  UC-1-ability to analyse and Respond Happy or Sad Mood message
+ *  UC-2-Handle Exception if user provides invalid mood
  *
  * @author Pratik Chaudhari
  * @since 30/06/2021
@@ -21,9 +22,13 @@ public class MoodAnalyser {
 
     //analyseMood method
     public String analyseMood() {
-        if (message.contains("sad")) {
-            return "SAD";
-        } else {
+        try {
+            if (message.contains("sad")) {
+                return "SAD";
+            } else {
+                return "HAPPY";
+            }
+        } catch (NullPointerException npe) {
             return "HAPPY";
         }
     }

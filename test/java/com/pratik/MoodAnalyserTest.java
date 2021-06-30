@@ -30,10 +30,19 @@ class MoodAnalyserTest {
         String mood = moodAnalyser.analyseMood();
         Assertions.assertEquals(mood, "SAD");
     }
+    
     //UC1-TC-1.2 Repeat
     @Test
     void givenIAmInHappyMood_shouldReturnHappy() {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in happy mood");
+        String mood = moodAnalyser.analyseMood();
+        Assertions.assertEquals(mood, "HAPPY");
+    }
+
+    //UC2.1 - given Null exception return HAPPY
+    @Test
+    void givenNullException_shouldReturnHappy() {
+        MoodAnalyser moodAnalyser = new MoodAnalyser();
         String mood = moodAnalyser.analyseMood();
         Assertions.assertEquals(mood, "HAPPY");
     }
